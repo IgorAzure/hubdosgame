@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Bem-vindo a sua <strong>Biblioteca</strong></h1>
+<p>Aqui sera o seu <i>dashboard</i> dos jogos que voce ja zerou 😊</p>
+
+<div class="card">
+    <ul>
+        {% for jogo in lista_jogos %}
+        <li class="item-jogo">
+            <a href="/jogo/{{ jogo.id }}">
+                {{jogo.titulo}}
+            </a>
+
+            <details class="dropdown">
+                <summary class="pontinhos">⋮</summary>
+
+                <ul class="menu-opcoes">
+                    <li>
+                        <a href="/deletar/{{ jogo.id }}">
+                            Excluir o jogo
+                        </a>
+                    </li>
+                </ul>
+            </details>
+        </li>
+        {% else %}
+        <p>Voce nao zerou nada, noob</p>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

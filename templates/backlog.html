@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Bem-vindo ao Backlog!</h1>
+<p>Todos os jogos que voce esta jogando e provavelmente nunca vai terminar estao aqui 😊</p>
+
+<div class="card">
+    <ul>
+        {% for jogo in lista_jogos %}
+        <li class="item-jogo">
+            <a href="/jogo/{{ jogo.id }}">
+                {{jogo.titulo}}
+            </a>
+
+            <details class="dropdown">
+                <summary class="pontinhos">⋮</summary>
+
+                <ul class="menu-opcoes">
+                    <!-- <li>
+                        <a href="/mudar_status/{{jogo.id}}/Backlog">
+                            Mover para o backlog
+                        </a>
+                    </li> -->
+                    <li>
+                        <a href="/mudar_status/{{jogo.id}}/Zerado">
+                            Mover para zerados
+                        </a>
+                    </li>
+
+                    <hr>
+
+                    <li>
+                        <a href="/deletar/{{ jogo.id }}">
+                            Excluir o jogo
+                        </a>
+                    </li>
+                </ul>
+            </details>
+        </li>
+        {% else %}
+        <p> Puts, tu nao ta jogando jogo? Vai tocar grama entao </p>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
