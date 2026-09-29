@@ -9,6 +9,12 @@
 
 <body>
 
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <h2>Processando dados...</h2>
+        <p>Isso pode levar alguns segundos.</p>
+    </div>
+
     <nav class="navbar">
         <h2>🎮 Game Tracker</h2>
         <ul class="nav-links">
@@ -16,6 +22,7 @@
             <li><a href="/biblioteca">Jogos Zerados</a></li>
             <li><a href="/backlog">Backlog (Fila)</a></li>
             <li><a href="/wishlist">Wishlist</a></li>
+            <li><a href="/statistics">Estatisticas da Conta</a></li> 
         </ul>
 
         <div>
@@ -24,7 +31,7 @@
                 <img src="{{ session['usuario']['foto']}}" alt="Avatar" class="user-avatar">
                 <div class="user-info">
                     <span class="user-name">{{ session['usuario']['nome']}}</span>
-                    <a href="/sincronizar">Sincronizar</a>
+                    <a href="/sincronizar" onclick="mostrarLoading()">Sincronizar</a>
                     <a href="/logout">Sair</a>
                 </div>
 
@@ -48,6 +55,20 @@
     <footer>
         <p>Desenvolvido nas aulas de Python.</p>
     </footer>
+
+    <script>
+        function mostrarLoading(){
+            document.getElementById('loading-overlay').style.display = 'flex';
+        }
+
+        const params = new URLSearchParams(window.location.search)
+
+        if(params.get("sincronizar") === "1"){
+            mostrarLoading();
+
+            window.location.href = "/sincronizar"
+        }
+    </script>
 
 </body>
 

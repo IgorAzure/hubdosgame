@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 style="text-align: center;">Estatisticas da biblioteca</h1>
+
+{% if grafico_barras %}
+<div class="grid-graficos">
+    <div class="card" style="text-align: center;">
+        <h3>Generos Favoritos</h3>
+        <img src="data:image/png;base64,{{ grafico_barras}}" />
+    </div>
+
+    <div class="card" style="text-align: center;">
+        <h3>Proporção da biblioteca</h3>
+        <img src="data:image/png;base64,{{ grafico_pizza}}" />
+    </div>
+
+    <div class="card" style="text-align: center;">
+        <h3>Situacao dos jogos: Status X Genero</h3>
+        <img src="data:image/png;base64, {{ grafico_matriz}}" />
+    </div>
+</div>
+{% else %}
+<div class="card">
+    <h3>Nenhum dado encontrado</h3>
+    <p>Sincronize sua conta da Steam ou adicione jogos manualmente</p>
+</div>
+{% endif %}
+
+{% endblock %}

@@ -9,6 +9,36 @@
         <p>Você já zerou <strong>{{zerados}}</strong> jogos!</p>
     </div>
 
+    <h2>Recomendacoes</h2>
+
+    {% if recomendacoes %}
+    <div>
+        <div class="carrossel-container">
+            {% for rec in recomendacoes %}
+            <div class="carrossel-card">
+                <img src="{{rec.imagem}}" class="carrossel-img">
+                <div class="carrossel-conteudo">
+                    <h4 class="carrossel-titulo" title="{{rec.titulo}}">{{rec.titulo}}</h4>
+
+                    <form action="{{ url_for('main.adicionar_jogo') }}" method="POST" class="carrossel-form">
+                        <input type="hidden" name="titulo" value="{{ rec.titulo }}">
+                        <input type="hidden" name="genero" value="Recomendacao">
+
+                        <button type="submit" name="status" value="Wishlist" class="btn-acao btn-wishlist">
+                            Wishlist
+                        </button>
+
+                        <button type="submit" name="status" value="Backlog" class="btn-acao btn-backlog">
+                            Backlog
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
     <div class="card">
         <h3> Adicionar novo jogo </h3>
 
